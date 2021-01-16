@@ -11,11 +11,11 @@ const Head = ({ title, faviconUrl, description }: IHeadProps) => (
     <title>{title}</title>
     <link rel="icon" href={faviconUrl} />
 
-    <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
-
-    <link rel="stylesheet" href="/nprogress.css" type="text/css" />
+    <meta charSet="UTF-8" />
 
     <meta name="description" content={description} />
+
+    <link rel="stylesheet" href="/nprogress.css" type="text/css" />
   </NextHead>
 );
 
