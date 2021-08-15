@@ -1,5 +1,3 @@
-@import './globals.css';
-
 #profile {
   width: 100%;
 }
@@ -21,7 +19,7 @@
 
 #profile .profile-image-container > div {
   border-radius: 50%;
-  border: 5px solid #e01b5c;
+  border: 5px solid var(--color-primary);
   height: 300px;
   width: 300px;
   margin: 0;

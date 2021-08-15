@@ -1,6 +1,6 @@
 #navbar {
   background-color: transparent;
-  color: white;
+  color: var(--color-white);
   padding: 20px 0;
   position: fixed;
   top: 0;
@@ -23,7 +23,7 @@
 #navbar .navbar-logo {
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--color-white);
   cursor: pointer;
 
   transition: opacity 0.25s ease-in-out;

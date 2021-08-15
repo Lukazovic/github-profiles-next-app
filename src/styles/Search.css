@@ -46,29 +46,28 @@
   width: 100%;
   margin-top: 1em;
   padding: 0.75em 0.5em;
-  background-color: #e01b5c;
+  background-color: var(--color-primary);
   border: none;
   outline: none;
   border-radius: 6px;
   font-size: 1em;
   font-weight: bold;
   cursor: pointer;
-
   transition: background-color 0.25s ease-in-out;
 }
 
 #search .search-form button:hover,
 #search .search-form button:active {
-  background-color: #d80a4e;
+  background-color: var(--color-primary-darken);
 }
 
 #search .search-form button:disabled {
   cursor: not-allowed;
-  color: black;
+  color: var(--color-black);
   opacity: 0.5;
 }
 
 #search .search-form button:disabled:hover,
 #search .search-form button:disabled:active {
-  background-color: #e01b5c;
+  background-color: var(--color-primary);
 }

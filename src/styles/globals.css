@@ -1,3 +1,15 @@
+:root {
+  --color-primary: #e01b5c;
+  --color-primary-lighter: #e01b5c;
+  --color-primary-darken: #d80a4e;
+
+  --color-background: #181818;
+  --color-text: #ffffff;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,14 +18,14 @@
 
 html,
 body {
-  background-color: #181818;
-  color: white;
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: #e01b5c;
+  color: var(--color-primary);
   text-decoration: none;
   transition: opacity 0.25s ease-in-out;
 }
