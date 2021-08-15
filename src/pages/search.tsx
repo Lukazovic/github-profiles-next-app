@@ -1,15 +1,18 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import Head from '../../components/Head';
-import Header from '../../components/Header';
+import Head from '../components/Head';
+import Header from '../components/Header';
 
-const Search: React.FC = () => {
+const SearchPage = () => {
   const [userName, setUsername] = useState('');
   const router = useRouter();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+
+    if (!userName) return;
+
     router.push(`/profile/${userName}`);
   };
 
@@ -59,8 +62,4 @@ const Search: React.FC = () => {
   );
 };
 
-export default Search;
-
-export const getStaticProps = async () => ({
-  props: {},
-});
+export default SearchPage;

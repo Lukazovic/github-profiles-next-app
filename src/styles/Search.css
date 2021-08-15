@@ -38,8 +38,15 @@
 
 #search .search-form input {
   width: 100%;
-  padding: 0.75em 0.5em;
+  padding: 1em 0.75em;
   border-radius: 6px;
+  outline: none;
+  border: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+#search .search-form input:focus {
+  box-shadow: 0 0 0 3px var(--color-primary);
 }
 
 #search .search-form button {
