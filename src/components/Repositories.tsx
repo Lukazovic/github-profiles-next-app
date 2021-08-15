@@ -1,29 +1,16 @@
-import React from 'react';
+import { RepositoryData } from '../services/tools/mappers';
 
-interface Repository {
-  id: string;
-  name: string;
-  description: string;
-  language: string;
-  repoUrl: string;
-  starsCount: number;
-  watchersCount: number;
-  forksCount: number;
-  updatedAt: string;
-  updatedDistance: string;
-}
+type RepositoriesProps = {
+  repositories: RepositoryData[];
+};
 
-interface RepositoriesProps {
-  repositories: Array<Repository>;
-}
-
-const Repositories: React.FC<RepositoriesProps> = ({ repositories = [] }) => (
+const Repositories = ({ repositories }: RepositoriesProps) => (
   <section id="repositories">
     <div className="wrapper">
       <h1 className="repositories-title">Repositories</h1>
 
       <div className="repositories-container">
-        {repositories.map(repository => (
+        {repositories?.map(repository => (
           <div className="repository-card" key={repository.id}>
             <div className="repository-card-top">
               <a

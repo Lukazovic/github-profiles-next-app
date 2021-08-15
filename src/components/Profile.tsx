@@ -1,18 +1,10 @@
-import React from 'react';
 import Image from 'next/image';
 
-interface ProfileProps {
-  name: string;
-  userName: string;
-  description: string;
-  avatarUrl: string;
-  followersCount: number;
-  publicReposCount: number;
-  profileUrl: string;
-  createdDistance: string;
-}
+import { UserData } from '../services/tools/mappers';
 
-const Profile: React.FC<ProfileProps> = ({
+type ProfileProps = Omit<UserData, 'id' | 'createdAt'>;
+
+const Profile = ({
   name,
   userName,
   description,
@@ -21,7 +13,7 @@ const Profile: React.FC<ProfileProps> = ({
   publicReposCount,
   profileUrl,
   createdDistance,
-}) => (
+}: ProfileProps) => (
   <main id="profile">
     <div className="wrapper">
       <div className="profile-container default-container ">

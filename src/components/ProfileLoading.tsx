@@ -1,5 +1,4 @@
-import React from 'react';
-const ProfileLoading: React.FC = () => (
+const ProfileLoading = () => (
   <main id="profile-loading">
     <div className="wrapper">
       <div className="profile-loading-container">

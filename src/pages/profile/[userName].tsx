@@ -9,15 +9,15 @@ import ProfileLoading from '../../components/ProfileLoading';
 import Repositories from '../../components/Repositories';
 import Footer from '../../components/Footer';
 
-import githubApiService from '../../services/resources/githubApi';
+import UserResources from '../../services/resources/user';
+import RepositoryResources from '../../services/resources/repository';
 
-import { IUser } from '../../helpers/interfaces/User';
-import { IUserRepository } from '../../helpers/interfaces/Repository';
+import { UserData, RepositoryData } from '../../services/tools/mappers';
 
-interface UserProfileProps {
-  repositories: IUserRepository[];
-  user: IUser;
-}
+type UserProfileProps = {
+  user: UserData;
+  repositories: RepositoryData[];
+};
 
 const UserProfile: React.FC<UserProfileProps> = ({ user, repositories }) => {
   const { isFallback } = useRouter();
@@ -62,17 +62,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-interface Context {
+type Context = {
   params: {
     userName: string;
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async (context: Context) => {
   const { userName } = context.params;
 
-  const user = await githubApiService.fetchUserData(userName);
-  const repositories = await githubApiService.fetchRepositories(userName);
+  const { data: user } = await UserResources.getUserData(userName);
+  const { data: repositories } =
+    await RepositoryResources.getAllRepositoriesFromUser(userName);
 
   return {
     props: {

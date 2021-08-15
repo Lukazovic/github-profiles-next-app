@@ -1,12 +1,16 @@
 import NextHead from 'next/head';
 
-interface IHeadProps {
-  title: string;
-  faviconUrl: string;
-  description: string;
-}
+type HeadProps = {
+  title?: string;
+  faviconUrl?: string;
+  description?: string;
+};
 
-const Head = ({ title, faviconUrl, description }: IHeadProps) => (
+const Head = ({
+  title = 'Github Profiles by Lucas Vieira',
+  description = 'In this project you can create your own Github Profile Page with the main informations and share it with your friends or put it on your resumè.',
+  faviconUrl = '/favicon.ico',
+}: HeadProps) => (
   <NextHead>
     <title>{title}</title>
     <link rel="icon" href={faviconUrl} />
@@ -18,12 +22,5 @@ const Head = ({ title, faviconUrl, description }: IHeadProps) => (
     <meta name="description" content={description} />
   </NextHead>
 );
-
-Head.defaultProps = {
-  title: 'Github Profiles by Lucas Vieira',
-  faviconUrl: '/favicon.ico',
-  description:
-    'In this project you can create your own Github Profile Page with the main informations and share it with your friends or put it on your resumè.',
-};
 
 export default Head;

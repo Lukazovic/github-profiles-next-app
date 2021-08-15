@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Footer: React.FC = () => (
+const Footer = () => (
   <footer id="footer">
     <div className="wrapper">
       <a

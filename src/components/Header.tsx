@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const Header: React.FC = () => {
+const Header = () => {
   const [navbarPositionFixed, setNavbarPositionFixed] = useState(false);
 
   const handleNavbarPosition = () => {

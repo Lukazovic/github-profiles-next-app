@@ -1,54 +1,49 @@
-import React from 'react';
 import { GetStaticProps } from 'next';
 
 import Head from '../components/Head';
-
 import Header from '../components/Header';
 import Profile from '../components/Profile';
 import Repositories from '../components/Repositories';
 import Footer from '../components/Footer';
 
-import githubApiService from '../services/resources/githubApi';
+import UserResources from '../services/resources/user';
+import RepositoryResources from '../services/resources/repository';
 
-import { IUser } from '../helpers/interfaces/User';
-import { IUserRepository } from '../helpers/interfaces/Repository';
+import { UserData, RepositoryData } from '../services/tools/mappers';
 
-interface IProps {
-  repositories: IUserRepository[];
-  user: IUser;
-}
+const DEFAULT_USER_NAME = 'Lukazovic';
 
-const Home: React.FC<IProps> = ({ user, repositories }) => {
-  return (
-    <div className="page">
-      <Head />
-
-      <Header />
-      <Profile
-        name={user.name}
-        userName={user.userName}
-        description={user.description}
-        avatarUrl={user.avatarUrl}
-        followersCount={user.followersCount}
-        publicReposCount={user.publicReposCount}
-        profileUrl={user.profileUrl}
-        createdDistance={user.createdDistance}
-      />
-      <Repositories repositories={repositories} />
-      <Footer />
-    </div>
-  );
+type HomePageProps = {
+  user: UserData;
+  repositories: RepositoryData[];
 };
 
-export default Home;
+const HomePage = ({ user, repositories }: HomePageProps) => (
+  <div className="page">
+    <Head />
+
+    <Header />
+    <Profile
+      name={user.name}
+      userName={user.userName}
+      description={user.description}
+      avatarUrl={user.avatarUrl}
+      followersCount={user.followersCount}
+      publicReposCount={user.publicReposCount}
+      profileUrl={user.profileUrl}
+      createdDistance={user.createdDistance}
+    />
+    <Repositories repositories={repositories} />
+    <Footer />
+  </div>
+);
+
+export default HomePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const DEFAULT_USER_NAME = 'Lukazovic';
-
-  const user = await githubApiService.fetchUserData(DEFAULT_USER_NAME);
-  const repositories = await githubApiService.fetchRepositories(
-    DEFAULT_USER_NAME
-  );
+  const { data: user } = await UserResources.getUserData(DEFAULT_USER_NAME);
+  const { data: repositories } =
+    await RepositoryResources.getAllRepositoriesFromUser(DEFAULT_USER_NAME);
 
   return {
     props: {
