@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import BaseTemplate from '../../templates/Base';
 import ProfileTemplate, { ProfileTemplateProps } from '../../templates/Profile';
+import ProfileLoadingTemplate from '../../templates/ProfileLoading';
 
 import Head from '../../components/Head';
-import ProfileLoading from '../../components/ProfileLoading';
 
 import UserResources from '../../services/resources/user';
 import RepositoryResources from '../../services/resources/repository';
@@ -14,11 +14,7 @@ const UserProfilePage = ({ user, repositories }: ProfileTemplateProps) => {
   const { isFallback } = useRouter();
 
   if (isFallback) {
-    return (
-      <BaseTemplate>
-        <ProfileLoading />
-      </BaseTemplate>
-    );
+    return <ProfileLoadingTemplate />;
   }
 
   return (
