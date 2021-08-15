@@ -1,7 +1,6 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
 
-import BaseTemplate from '../../templates/Base';
 import ProfileTemplate, { ProfileTemplateProps } from '../../templates/Profile';
 import ProfileLoadingTemplate from '../../templates/ProfileLoading';
 
@@ -35,18 +34,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-type Context = {
-  params: {
-    userName: string;
-  };
-};
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const userName = context.params.userName as string;
 
-export const getStaticProps: GetStaticProps = async (context: Context) => {
-  const { userName } = context.params;
-
-  const { data: user } = await UserResources.getUserData(userName);
-  const { data: repositories } =
+  const { data: user, error: userError } = await UserResources.getUserData(
+    userName
+  );
+  const { data: repositories, error: repositoriesErros } =
     await RepositoryResources.getAllRepositoriesFromUser(userName);
+
+  if (userError || repositoriesErros) {
+    return {
+      redirect: { destination: '/404' },
+      props: {},
+    };
+  }
 
   return {
     props: {
