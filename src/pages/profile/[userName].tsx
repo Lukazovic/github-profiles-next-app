@@ -1,59 +1,36 @@
-import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
+import BaseTemplate from '../../templates/Base';
+import ProfileTemplate, { ProfileTemplateProps } from '../../templates/Profile';
+
 import Head from '../../components/Head';
-import Header from '../../components/Header';
-import Profile from '../../components/Profile';
 import ProfileLoading from '../../components/ProfileLoading';
-import Repositories from '../../components/Repositories';
-import Footer from '../../components/Footer';
 
 import UserResources from '../../services/resources/user';
 import RepositoryResources from '../../services/resources/repository';
 
-import { UserData, RepositoryData } from '../../services/tools/mappers';
-
-type UserProfileProps = {
-  user: UserData;
-  repositories: RepositoryData[];
-};
-
-const UserProfile: React.FC<UserProfileProps> = ({ user, repositories }) => {
+const UserProfilePage = ({ user, repositories }: ProfileTemplateProps) => {
   const { isFallback } = useRouter();
 
   if (isFallback) {
     return (
-      <div className="page">
-        <Head />
-        <Header />
+      <BaseTemplate>
         <ProfileLoading />
-      </div>
+      </BaseTemplate>
     );
   }
 
   return (
-    <div className="page">
+    <>
       <Head title={`${user.name} - Profile`} description={user.description} />
 
-      <Header />
-      <Profile
-        name={user.name}
-        userName={user.userName}
-        description={user.description}
-        avatarUrl={user.avatarUrl}
-        followersCount={user.followersCount}
-        publicReposCount={user.publicReposCount}
-        profileUrl={user.profileUrl}
-        createdDistance={user.createdDistance}
-      />
-      <Repositories repositories={repositories} />
-      <Footer />
-    </div>
+      <ProfileTemplate user={user} repositories={repositories} />
+    </>
   );
 };
 
-export default UserProfile;
+export default UserProfilePage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
