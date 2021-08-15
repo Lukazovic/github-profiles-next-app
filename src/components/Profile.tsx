@@ -26,7 +26,14 @@ const Profile: React.FC<ProfileProps> = ({
     <div className="wrapper">
       <div className="profile-container default-container ">
         <div className="profile-image-container">
-          <Image src={avatarUrl} alt={name} width={300} height={300} />
+          <Image
+            src={avatarUrl}
+            alt={name}
+            width={300}
+            height={300}
+            placeholder="blur"
+            blurDataURL={avatarUrl}
+          />
         </div>
         <h1>{name}</h1>
         <h4>{description}</h4>

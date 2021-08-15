@@ -19,12 +19,16 @@
   height: 300px;
 }
 
+#profile .profile-image-container > div {
+  border-radius: 50%;
+  border: 5px solid #e01b5c;
+  height: 300px;
+  width: 300px;
+  margin: 0;
+}
+
 #profile .profile-image-container img {
   border-radius: 50%;
-  border: 5px solid #e01b5c !important;
-  height: 300px !important;
-  width: 300px !important;
-  margin: 0 !important;
 }
 
 #profile .profile-container h1 {
