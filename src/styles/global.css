@@ -24,6 +24,17 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+::-moz-selection {
+  background: var(--color-primary-darken);
+  text-shadow: none;
+}
+
+::selection {
+  background: var(--color-primary-darken);
+  text-shadow: none;
+  color: var(--color-white);
+}
+
 a {
   color: var(--color-primary);
   text-decoration: none;
